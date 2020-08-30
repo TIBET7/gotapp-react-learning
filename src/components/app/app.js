@@ -6,11 +6,14 @@ import ErrorMessage from '../errorMessage';
 import CharacterPage from '../characterPage';
 import ItemList from '../itemList';
 import CharDetails from '../charDetails';
+import gotService from '../../services/gotService';
 
 import './app.css';
 
 
 export default class App extends Component {
+    gotService = new gotService();
+
     state = {
         showRandomChar: true,
         error: false,
@@ -53,9 +56,12 @@ export default class App extends Component {
                         </Col>
                     </Row>
                     <CharacterPage/>
-                    {/* <Row>
+                    <Row>
                         <Col md='6'>
-                            <ItemList onCharSelected={this.onCharSelected}/>
+                            <ItemList 
+                                onCharSelected={this.onCharSelected}
+                                getData={this.gotService.getAllBooks}
+                                renderItem={(item) => item.name}/>
                         </Col>
                         <Col md='6'>
                             <CharDetails charId={this.state.selectedChar}/>
@@ -63,12 +69,15 @@ export default class App extends Component {
                     </Row>
                     <Row>
                         <Col md='6'>
-                            <ItemList onCharSelected={this.onCharSelected}/>
+                            <ItemList 
+                                onCharSelected={this.onCharSelected}
+                                getData={this.gotService.getAllHouses}
+                                renderItem={(item) => item.name}/>
                         </Col>
                         <Col md='6'>
                             <CharDetails charId={this.state.selectedChar}/>
                         </Col>
-                    </Row> */}
+                    </Row>
                 </Container>
             </>
         );

@@ -31,16 +31,25 @@ export default class CharacterPage extends Component {
             return <ErrorMessage/>
         }
 
+        const itemList = (
+            <ItemList
+                onCharSelected={this.onCharSelected}
+                getData={this.gotService.getAllCharacters}
+                renderItem={({name, gender}) => `${name} (${gender})`}/>
+        )
+
+        const charDetails = (
+            <CharDetails charId={this.state.selectedChar}/>
+        )
+
         return (
             <Row>
-            <Col md='6'>
-                <ItemList
-                    onCharSelected={this.onCharSelected}
-                    getData={this.gotService.getAllCharacters}/>
-            </Col>
-            <Col md='6'>
-                <CharDetails charId={this.state.selectedChar}/>
-            </Col>
+                <Col md='6'>
+                    {itemList}
+                </Col>
+                <Col md='6'>
+                    {charDetails}
+                </Col>
             </Row>
         ) 
     }
