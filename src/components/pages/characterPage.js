@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ItemList from '../itemList';
-import CharDetails, { Field } from '../charDetails';
+import CharDetails, { Field } from '../itemDetails';
 import ErrorMessage from '../errorMessage';
 import gotService from '../../services/gotService';
 import RowBlock from '../rowBlock';

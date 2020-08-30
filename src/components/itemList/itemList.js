@@ -4,7 +4,7 @@ import Spinner from '../spinner';
 import ErrorMessage from '../errorMessage';
 export default class ItemList extends Component {
     state = {
-        itemlist: null,
+        itemList: null,
         error: false
     }
 
