@@ -15,6 +15,14 @@ export default class App extends Component {
         error: false,
         selectedChar: 130
     }
+
+    componentDidCatch() {
+        console.log('error');
+        this.setState({
+            error: true
+        })
+    }
+
     toggleRandomChar = () => {
         this.setState((state) => {
             return {
@@ -30,10 +38,12 @@ export default class App extends Component {
     }
     
     render() {
+        const char = this.state.showRandomChar ? <RandomChar/> : null;
+
         if (this.state.error) {
             return <ErrorMessage/>
         }
-        const char = this.state.showRandomChar ? <RandomChar/> : null;
+
         return (
             <> 
                 <Container>
