@@ -11,12 +11,14 @@ export default class GotService {
         return  await result.json();
     };
 
-    getAllBooks() {
-        return this.getResource('/books/');
+    async getAllBooks() {
+        const res = await this.getResource(`/books/`);
+        return res.map(this._transformBook);
     }
 
-    getBook(id) {
-        return this.getResource(`/books/${id}`);
+    async getBook(id) {
+        const book = await this.getResource(`/books/${id}/`);
+        return this._transformBook(book);
     }
 
     async getAllCharacters() {
@@ -29,12 +31,14 @@ export default class GotService {
         return this._transformCharacter(character);
     }
 
-    getAllHouses() {
-        return this.getResource('/houses?page=5&pageSize=10');
+    async getAllHouses() {
+        const res = await this.getResource(`/houses/`);
+        return res.map(this._transformHouse);
     }
-
-    getHouse(id) {
-        return this.getResource(`/houses/${id}`);
+    
+    async getHouse(id) {
+        const house = this.getResource(`/houses/${id}/`);
+        return this._transformHouse(house);
     }
 
     _transformCharacter(char) {
@@ -44,7 +48,7 @@ export default class GotService {
             born: char.born,
             died: char.died,
             culture: char.culture
-        }
+        };
     }
 
     _transformHouse(house) {
@@ -55,15 +59,15 @@ export default class GotService {
             titles: house.titles,
             overlord: house.overlord,
             ancestralWeapons: house.ancestralWeapons
-        }
+        };
     }
 
     _transformBook(book) {
         return {
             name: book.name,
             numberOfPages: book.numberOfPages,
-            publicer: book.publicer,
+            publiser: book.publiser,
             released: book.released,
-        }
+        };
     }
 }
