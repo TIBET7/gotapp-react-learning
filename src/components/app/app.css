@@ -18,3 +18,8 @@
     background-size: cover;
     height: 1000px;	
 }
+
+.app-title {
+    color: white;
+    font-size: 50px;
+}
